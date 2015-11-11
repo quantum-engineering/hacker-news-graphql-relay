@@ -1,0 +1,4 @@
+node_modules
+public/dist/javascripts/**/*.js
+public/dist/javascripts/**/*.map
+public/dist/stylesheets/**/*.css

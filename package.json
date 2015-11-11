@@ -1,0 +1,61 @@
+{
+  "name": "hacker-news-graphql-relay",
+  "version": "1.0.0",
+  "description": "Building the hacker news client with relay and graphql interface",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "cssnext public/src/stylesheets/main.css -c public/dist/stylesheets/bundle.css",
+    "build-js": "browserify public/src/javascripts/main.js -d -o public/dist/javascripts/bundle.js",
+    "watch-js": "watchify public/src/javascripts/main.js -d -o public/dist/javascripts/bundle.js -v",
+    "uglify-js": "uglifyjs public/dist/javascripts/bundle.js -o public/dist/javascripts/bundle.js -v",
+    "watch-css": "cssnext --watch public/src/stylesheets/main.css public/dist/stylesheets/bundle.css --verbose",
+    "watch": "npm run watch-css & npm run watch-js",
+    "build": "npm run build-js && npm run uglify-js && npm run build-css",
+    "update-schema": "babel-node ./scripts/updateSchema.js"
+  },
+  "keywords": [
+    "relay",
+    "graphql",
+    "react"
+  ],
+  "author": "Gregory Tandiono",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.4.2",
+    "babel-relay-plugin": "^0.3.0",
+    "bluebird": "^2.10.2",
+    "express": "^4.13.3",
+    "express-graphql": "^0.4.0",
+    "faker": "^3.0.1",
+    "firebase": "^2.3.1",
+    "graphql": "^0.4.7",
+    "graphql-relay": "^0.3.2",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-relay": "^0.4.0",
+    "superagent": "^1.4.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.24",
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "cssnext": "^1.8.4",
+    "watchify": "^3.4.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "stage": 0,
+          "plugins": [
+            "./builder/babelRelayPlugin.js"
+          ]
+        }
+      ]
+    ]
+  }
+}

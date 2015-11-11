@@ -1,0 +1,14 @@
+type News {
+  id: String
+  by: String
+  title: String
+  url: String
+}
+
+type Query {
+  store: Store
+}
+
+type Store {
+  news(newsType: String): [News]
+}
